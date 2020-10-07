@@ -16,6 +16,7 @@ namespace devbook.api.Data
 
 
 
+
         protected override void OnModelCreating(ModelBuilder builder){
         builder.Entity<Favourite>()
             .HasKey(k => new {k.FavouriterId, k.FavouriteeId});
@@ -39,7 +40,12 @@ namespace devbook.api.Data
             .HasOne(u => u.Recipient)
             .WithMany(m => m.MessagesReceived)
             .OnDelete(DeleteBehavior.Restrict);
+
+
+        
         }
+
+        
 
 
     }

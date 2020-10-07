@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using devbook.api.Data;
 using devbook.api.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -35,9 +36,17 @@ namespace devbook.api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>( x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(
+                opt =>
+                {
+                    opt.SerializerSettings.ReferenceLoopHandling = 
+                    Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                }
+            );
             services.AddCors();
+            services.AddAutoMapper(typeof(DeveloperRepository).Assembly);
             services.AddScoped<IAuthRepository, AuthRepository>();
+             services.AddScoped<IDeveloperRepository, DeveloperRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options => {
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -78,6 +87,7 @@ namespace devbook.api
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
+            app.UseAuthentication();
             
             app.UseAuthorization();
 
