@@ -12,7 +12,7 @@ namespace devbook.api.dtos
         public string City { get; set; }
         public string Country { get; set; }
         public string FirstName { get; set; }
-        public string Lastname { get; set; }
+        public string LastName { get; set; }
          public int Age { get; set; }
         public string GithubLink { get; set; }
         public string Status { get; set; }

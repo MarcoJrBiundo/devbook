@@ -33,7 +33,7 @@ namespace devbook.api.Data
         public async Task<IEnumerable<User>> GetUsers()
         {
 
-            var user = await  _context.Users.Include(p => p.Photos).ToListAsync();
+            var user = await  _context.Users.Include(p => p.Photos).Include(s => s.Skills).Include(i => i.Interests).ToListAsync();
             return user;
             
         }
