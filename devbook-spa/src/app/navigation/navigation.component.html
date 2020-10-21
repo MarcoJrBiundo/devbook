@@ -1,27 +1,28 @@
 
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">     
-  <a class="navbar-brand " style="font-size:35px"  [routerLink]="['/home']" >DevBook</a>
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">    
+  <img src="https://img.icons8.com/nolan/64/programming.png" alt="logo" width="50" height="50">  
+  <a class="navbar-brand gradient-text " style="font-size:35px"  [routerLink]="['/home']" >DevBook</a>
 
   <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
     <li class="nav-item"  routerLinkActive="router-link-active">
-      <a class="nav-link" [routerLink]="['/members']" >Search</a>
+      <a class="nav-link gradient-text" [routerLink]="['/members']" >Search</a>
     </li>
     <li class="nav-item "  routerLinkActive="router-link-active">
-      <a class="nav-link" [routerLink]="['/lists']">Favourites</a>
+      <a class="nav-link gradient-text" [routerLink]="['/lists']">Favourites</a>
     </li>
     <li class="nav-item "  routerLinkActive="router-link-active">
-      <a class="nav-link" [routerLink]="['/messages']">Messages</a>
+      <a class="nav-link gradient-text" [routerLink]="['/messages']">Messages</a>
     </li>
 
   </ul>
   <div  *ngIf="loggedIn()" class="dropdown" dropdown>
-    <a class=" dropdown-toggle text-light" dropdownToggle>
+    <a class=" dropdown-toggle text-light gradient-text" dropdownToggle>
       Welcome {{authService.decodedToken?.unique_name | titlecase}}
     </a>
     <div class="dropdown-menu mt-6" *dropdownMenu >
-      <a class="dropdown-item"><i class="fa fa-user"></i>Edit Profile</a> 
+      <a class="dropdown-item gradient-text" [routerLink]="['/member/edit']" ><i class="fa fa-user"></i>Edit Profile</a> 
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>Sign Out</a>
+      <a class="dropdown-item gradient-text" (click)="logout()"><i class="fa fa-sign-out"></i>Sign Out</a>
     </div>
   </div>
   <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">

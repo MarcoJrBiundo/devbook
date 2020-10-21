@@ -19,7 +19,7 @@ export interface User {
     status?: string;
     rating?: number;
     photos?: Photo[];
-    interests?: Interest[];
+    interest: string;
     skills?: Skill[];
 
 }

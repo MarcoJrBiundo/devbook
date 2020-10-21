@@ -17,10 +17,6 @@
             <p>{{user.githubLink}}</p>
           </div>
           <div>
-            <strong>Interested In:</strong>
-            <p>{{user.interests[0].interest}}</p>
-          </div>
-          <div>
             <strong>Last Active:</strong>
             <p>{{user.lastActive}}</p>
           </div>
@@ -41,17 +37,15 @@
       <div class="tab-panel">
         <tabset class="member-tabset" #memberTabs>
           <tab heading="About {{user.firstName}}">
-            <h4>What is {{user.firstName}} currently interested in?</h4>
-            <p>{{user.interests[0].interest}}</p>
+            <h4>{{user.firstName}}'s Dev Story</h4>
+            <p>{{user.status}}</p>
+            <h4>Why {{user.firstName}} Joined Devbook</h4>
+            <p>{{user.interest}}</p>
             <h4>Skills:</h4>
             <ul *ngFor="let skill of user.skills">
               <li>{{skill.skill}}</li>
             </ul>
             
-          </tab>
-          <tab heading="Interests">
-            <h4>Interests</h4>
-            <p>{{user.interests[0].interest}}</p>
           </tab>
           <tab heading="Photos">
             <ngx-gallery style="display: inline-block; margin-bottom:20px;" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>

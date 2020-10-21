@@ -26,14 +26,14 @@ namespace devbook.api.Data
 
         public async Task<User> GetUser(int id)
         {
-           var user = await  _context.Users.Include(p => p.Photos).Include(s => s.Skills).Include(i => i.Interests).FirstOrDefaultAsync(u => u.Id == id);
+           var user = await  _context.Users.Include(p => p.Photos).Include(s => s.Skills).FirstOrDefaultAsync(u => u.Id == id);
            return user;
         }
 
         public async Task<IEnumerable<User>> GetUsers()
         {
 
-            var user = await  _context.Users.Include(p => p.Photos).Include(s => s.Skills).Include(i => i.Interests).ToListAsync();
+            var user = await  _context.Users.Include(p => p.Photos).Include(s => s.Skills).ToListAsync();
             return user;
             
         }

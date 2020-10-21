@@ -20,7 +20,7 @@ namespace devbook.api.Helpers
                        
             CreateMap<Photo, PhotosForDetailedDto>();   
             CreateMap<Skills, SkillForDetailedDto>();  
-            CreateMap<Interests, InterestsForDetailedDto>();  
+            CreateMap<UserForUpdateDto, User>();
         }
         
     }

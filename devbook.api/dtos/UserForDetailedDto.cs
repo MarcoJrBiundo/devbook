@@ -18,12 +18,13 @@ namespace devbook.api.dtos
         public string Status { get; set; }
         public double Rating { get; set; }
         public string Gender { get; set; }
+        public string Interest { get; set; }
         public DateTime LastActive { get; set; }
         public DateTime Created { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string PhotoUrl { get; set; }
         public virtual ICollection<PhotosForDetailedDto> Photos { get; set; }
-        public virtual ICollection<InterestsForDetailedDto> Interests { get; set; }
+     
         public virtual ICollection<SkillForDetailedDto> Skills { get; set; }
     }
 }

@@ -26,6 +26,10 @@ import { error } from 'protractor';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+
 
 export function tokenGetter(){
   return localStorage.getItem('token')}
@@ -40,6 +44,7 @@ export function tokenGetter(){
       MemberListComponent,
       MessagesComponent,
       MemberCardComponent,
+      MemberEditComponent,
       MemberDetailComponent
    ],
   imports: [
@@ -59,6 +64,7 @@ export function tokenGetter(){
       }
     })
   ],
+
   providers: [
     ErrorInterceptorProvider,
     AuthService,
@@ -66,7 +72,9 @@ export function tokenGetter(){
     AuthGuard,
     UserService,
     MemberDetailResolver,
-    MemberListResolver
+    MemberListResolver,
+    MemberEditResolver,
+    PreventUnsavedChanges
   ],
   bootstrap: [AppComponent]
 })
