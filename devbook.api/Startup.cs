@@ -44,6 +44,7 @@ namespace devbook.api
                 }
             );
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof(DeveloperRepository).Assembly);
             services.AddScoped<IAuthRepository, AuthRepository>();
              services.AddScoped<IDeveloperRepository, DeveloperRepository>();

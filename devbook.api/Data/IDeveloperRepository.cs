@@ -12,6 +12,13 @@ namespace devbook.api.Data
         Task<User> GetUser(int id);
         Task<IEnumerable<User>> GetUsers();
         Task<Skills> GetSkill(int id);
+
+        Task<Skills> addSkill(Skills skill);
+        Task<Photo> GetPhoto(int id);
+        Task<Photo> GetMainPhotoForUser(int userId);
+
+
+        
    
     }
 }

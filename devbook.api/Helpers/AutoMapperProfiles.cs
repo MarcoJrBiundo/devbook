@@ -21,6 +21,8 @@ namespace devbook.api.Helpers
             CreateMap<Photo, PhotosForDetailedDto>();   
             CreateMap<Skills, SkillForDetailedDto>();  
             CreateMap<UserForUpdateDto, User>();
+            CreateMap<Photo, PhotoForReturnDto>();
+            CreateMap<PhotoForCreationDto, Photo>();
         }
         
     }

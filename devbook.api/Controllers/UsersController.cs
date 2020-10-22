@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using devbook.api.Data;
 using devbook.api.dtos;
+using devbook.api.models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -78,6 +79,27 @@ namespace devbook.api.Controllers
             }
             return BadRequest("Failed to delete Skill");
          } 
+
+
+        [HttpPost("skill")]
+        public async Task<IActionResult> addSkill(SkillForAdditionDTO skill)
+        {
+            var skillToCreate = new Skills{
+                 UserId = skill.UserId,
+                 Skill = skill.Skill
+                 };
+             var createdUser = await _repo.addSkill(skillToCreate);
+
+            return StatusCode(204);
+        
+
+         
+
+            
+        }
+
+
+
 
  
     }
