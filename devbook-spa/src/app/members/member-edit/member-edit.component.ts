@@ -50,11 +50,20 @@ export class MemberEditComponent implements OnInit {
   
   updateUser(){
     this.userService.updateUser(this.authService.decodedToken.nameid, this.user).subscribe(next => {
-        this.alertify.success('Profile Updated Successfully')
+        this.alertify.success('Profile Updated Successfully');
         this.editForm.reset(this.user);
       }, error => {
         this.alertify.error(error);
       });
+  }
+
+  deleteSkill(skillId){
+    this.userService.deleteSkill(skillId).subscribe(next => {
+      this.alertify.success('Skill Deleted Successfully');
+    }, error =>{
+      this.alertify.error(error);
+    })
+
   }
 
 

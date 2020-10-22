@@ -18,7 +18,7 @@ namespace devbook.api.dtos
         public DateTime Created { get; set; }   
         public DateTime DateOfBirth { get; set; } 
         public string PhotoUrl { get; set; }
-         public virtual ICollection<InterestsForDetailedDto> Interests { get; set; }
+        public string Interest { get; set; }
         public virtual ICollection<SkillForDetailedDto> Skills { get; set; }
         
     }

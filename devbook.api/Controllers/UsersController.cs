@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -62,8 +63,22 @@ namespace devbook.api.Controllers
                 return NoContent();
 
             throw new Exception($"Updating user {id} failed on save");
-
         }
+
+
+        [HttpDelete("skill/{id}")]
+         public async Task<IActionResult> DeleteSkill(int id)
+         {
+            var skillFromRepo = await _repo.GetSkill(id);
+            if(skillFromRepo.Id != null){
+                 _repo.Delete(skillFromRepo);
+            }
+            if( await _repo.SaveAll()){
+                return Ok();
+            }
+            return BadRequest("Failed to delete Skill");
+         } 
+
  
     }
 }

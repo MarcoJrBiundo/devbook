@@ -63,9 +63,18 @@
           <p>Not Ready Yet</p>
         </tab>
         <tab heading="Edit Skills">
-          <ul *ngFor="let skill of user.skills">
-            <li>{{skill.skill}}</li>
-          </ul>
+          <div class="container">
+            <div class="row" *ngFor="let skill of user.skills">
+              <div class="col-sm" >
+                {{skill.skill}}
+              </div>
+              <div class="col-sm">
+                <button (click)="deleteSkill(skill.id)" class="btn btn-danger">Remove</button>
+              </div>
+                <div class="col-sm">
+              </div>
+            </div>
+          </div>
         </tab>
       </tabset>
     </div>

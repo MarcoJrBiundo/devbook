@@ -37,6 +37,12 @@ namespace devbook.api.Data
             return user;
             
         }
+        
+        public async Task<Skills> GetSkill(int id)
+        {
+            var skill = await _context.Skills.FirstOrDefaultAsync(s => s.Id == id);
+            return skill;
+        }
 
         public async Task<bool> SaveAll()
         {
