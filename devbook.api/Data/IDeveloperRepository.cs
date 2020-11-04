@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using devbook.api.Helpers;
 using devbook.api.models;
 
 namespace devbook.api.Data
@@ -10,7 +11,7 @@ namespace devbook.api.Data
         void Delete<T>(T entity) where T: class;
         Task<bool> SaveAll();
         Task<User> GetUser(int id);
-        Task<IEnumerable<User>> GetUsers();
+        Task<PagedList<User>> GetUsers(UserParams userParams);
         Task<Skills> GetSkill(int id);
 
         Task<Skills> addSkill(Skills skill);

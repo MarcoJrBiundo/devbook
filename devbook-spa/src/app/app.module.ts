@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NavigationComponent } from './navigation/navigation.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
@@ -31,6 +31,11 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimeagoModule } from 'ngx-timeago';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+
 
 
 export function tokenGetter(){
@@ -48,16 +53,21 @@ export function tokenGetter(){
       MemberCardComponent,
       MemberEditComponent,
       MemberDetailComponent,
-      PhotoEditorComponent
+      PhotoEditorComponent,
    ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule,
     NgxGalleryModule,
+    PaginationModule,
     FileUploadModule,
+    ButtonsModule.forRoot(),
     BsDropdownModule.forRoot(),
+    TimeagoModule.forRoot(),
     TabsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     JwtModule.forRoot({

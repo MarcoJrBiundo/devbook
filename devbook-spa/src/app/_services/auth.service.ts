@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { User } from '../_models/user';
 
 
 @Injectable({
@@ -31,9 +32,8 @@ export class AuthService {
       );
     }
 
-    register(model: any){
-
-      return this.http.post(this.baseurl + 'register', model);
+    register(user: User){
+      return this.http.post(this.baseurl + 'register', user);
     }
 
 
@@ -41,6 +41,8 @@ export class AuthService {
       const token = localStorage.getItem('token');
       return !this.jwtHelper.isTokenExpired(token);
     }
+
+
 
 
 

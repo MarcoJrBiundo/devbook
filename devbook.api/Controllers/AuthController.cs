@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using DatingApp.api.Dtos;
 using devbook.api.Data;
 using devbook.api.dtos;
@@ -19,19 +20,25 @@ namespace devbook.api.Controllers
     {
         private readonly IAuthRepository _repository;
         private readonly IConfiguration _configuration;
-        public AuthController(IAuthRepository repository, IConfiguration configuration)
+
+        private readonly IMapper _mapper;
+        public AuthController(IAuthRepository repository, IConfiguration configuration,  IMapper mapper)
         {
             _repository = repository;
             _configuration = configuration;
+            _mapper = mapper;
         }
     [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDTO userForRegisterDTO)
         {
             userForRegisterDTO.Username = userForRegisterDTO.Username.ToLower();
             if (await _repository.UserExists(userForRegisterDTO.Username)) {return BadRequest("Username already in use");}
-            var userToCreate = new User{Username = userForRegisterDTO.Username};
+            var userToCreate = _mapper.Map<User>(userForRegisterDTO);
             var createdUser = await _repository.Register(userToCreate, userForRegisterDTO.Password);
-            return StatusCode(201);
+
+            var userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
+
+            return CreatedAtRoute("GetUser", new {controller = "Users", id = createdUser.Id}, userToReturn);
         }
 
 

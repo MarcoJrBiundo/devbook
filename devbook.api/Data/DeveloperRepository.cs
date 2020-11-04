@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using devbook.api.Helpers;
 using devbook.api.models;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,11 +33,36 @@ namespace devbook.api.Data
            return user;
         }
 
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<PagedList<User>> GetUsers(UserParams userParams)
         {
 
-            var user = await  _context.Users.Include(p => p.Photos).Include(s => s.Skills).ToListAsync();
-            return user;
+            var user =   _context.Users.Include(p => p.Photos).Include(s => s.Skills).OrderByDescending(u => u.LastActive).AsQueryable();
+            user = user.Where(u => u.Id != userParams.UserId);
+            if(userParams.Skill != null){
+            var skillSearch = await GetSkillBySkill(userParams.Skill.ToLower());
+            user = user.Where( u => skillSearch.Contains(u.Id));
+                
+            }
+
+
+
+            if (!string.IsNullOrEmpty(userParams.OrderBy)){
+                switch(userParams.OrderBy){
+                    case "created":
+                        user = user.OrderByDescending(u => u.Created);
+                        break;
+                    default:
+                        user = user = user.OrderByDescending(u => u.LastActive);
+                        break;
+                }
+            }
+
+
+
+
+
+          
+            return await PagedList<User>.CreateAsync(user, userParams.PageNumber, userParams.PageSize);
             
         }
         
@@ -44,6 +71,25 @@ namespace devbook.api.Data
             var skill = await _context.Skills.FirstOrDefaultAsync(s => s.Id == id);
             return skill;
         }
+
+        public async Task<IEnumerable<int>> GetSkillBySkill(string searchSkill)
+        {
+    
+            return _context.Skills.Where(s => s.Skill.ToLower() == searchSkill).Select(i => i.UserId);
+
+        }
+            
+        
+
+
+
+
+
+
+
+
+
+
 
         public async Task<bool> SaveAll()
         {

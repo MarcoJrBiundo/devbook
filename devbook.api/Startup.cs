@@ -58,7 +58,8 @@ namespace devbook.api
                         ValidateIssuer = false,
                         ValidateAudience = false
                 };
-            });  
+            });
+            services.AddScoped<LogUserActivity>();
             
         }
 
