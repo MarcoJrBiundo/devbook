@@ -3,10 +3,9 @@
   <div class="btn-group">
     <button class="btn btn-primary "  [(ngModel)]="favouritesParam" btnRadio="Favouriters" (click)="loadUsers()">Members who favourited you</button>
     <button class="btn btn-primary" [(ngModel)]="favouritesParam" btnRadio="Favouritees" (click)="loadUsers()">Your Favourites</button>
-    
+  
   </div>
   <h2 style="margin-left: 40px" >{{favouritesParam === 'Favouriters' ? 'Members who favourited you' : 'Your Favourites'}} : {{pagination.totalItems}}</h2>
-
 </div>
 
 <br>
