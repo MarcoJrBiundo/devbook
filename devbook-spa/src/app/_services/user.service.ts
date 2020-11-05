@@ -18,7 +18,7 @@ constructor(private http: HttpClient) { }
 
 
 
-getUsers(page?, itemsPerPage?, userParams?): Observable<PaginatedResult<User[]>>{
+getUsers(page?, itemsPerPage?, userParams?, favouritesParam?): Observable<PaginatedResult<User[]>>{
   const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
   let params = new HttpParams();
 
@@ -32,6 +32,14 @@ getUsers(page?, itemsPerPage?, userParams?): Observable<PaginatedResult<User[]>>
     params = params.append('skill', userParams.skill);
     params = params.append('orderBy', userParams.orderBy);
   }
+
+  if (favouritesParam === 'Favouriters'){
+    params = params.append('favouriters', 'true');
+   }
+  if (favouritesParam === 'Favouritees'){
+    params = params.append('favouritees', 'true');
+   }
+
  
 
   return this.http.get<User[]>(this.baseUrl + 'users', {observe: 'response', params})
@@ -71,6 +79,11 @@ setMainPhoto(userId: number, id: number){
 deletePhoto(userId: number, id: number){
   return this.http.delete(this.baseUrl + 'users/' + userId + '/photos/' + id);
 }
+
+sendFavourite(id: number, recipientId: number){
+  return this.http.post(this.baseUrl + 'users/' + id + '/favourite/' + recipientId, {});
+}
+
 
 }
 

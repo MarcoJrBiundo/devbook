@@ -40,11 +40,21 @@ namespace devbook.api.Data
             user = user.Where(u => u.Id != userParams.UserId);
             if(userParams.Skill != null){
             var skillSearch = await GetSkillBySkill(userParams.Skill.ToLower());
-            user = user.Where( u => skillSearch.Contains(u.Id));
+            user = user.Where( u => skillSearch.Contains(u.Id)); 
+            }
+
+            if(userParams.Favouriters){
+                var userFavouriters = await GetUserFavourites(userParams.UserId, userParams.Favouriters);
+                user = user.Where( u => userFavouriters.Contains(u.Id));
                 
             }
 
-
+            if(userParams.Favouritees){
+                var userFavouritees = await GetUserFavourites(userParams.UserId, userParams.Favouriters);
+                user = user.Where( u => userFavouritees.Contains(u.Id));
+                
+                
+            }
 
             if (!string.IsNullOrEmpty(userParams.OrderBy)){
                 switch(userParams.OrderBy){
@@ -78,6 +88,22 @@ namespace devbook.api.Data
             return _context.Skills.Where(s => s.Skill.ToLower() == searchSkill).Select(i => i.UserId);
 
         }
+
+
+        private async Task<IEnumerable<int>> GetUserFavourites(int id, bool favouriters)
+        {
+            var user = await _context.Users
+                .Include(x => x.Favouriters)
+                .Include(x => x.Favouritees)
+                .FirstOrDefaultAsync(u => u.Id == id);
+            if(favouriters){
+                return user.Favouriters.Where(u => u.FavouriteeId == id).Select(i => i.FavouriterId);
+            }
+            else{
+                return user.Favouritees.Where(u => u.FavouriterId == id).Select(i => i.FavouriteeId);
+            }
+        }
+           
             
         
 
@@ -113,6 +139,13 @@ namespace devbook.api.Data
         {
             return await _context.Photos
                 .Where(u => u.UserId == userId).FirstOrDefaultAsync(p => p.IsMain);
+        }
+
+        public async Task<Favourite> GetFavourite(int userId, int recipientId)
+        {
+                return await _context.Favourite.FirstOrDefaultAsync( u =>
+                u.FavouriterId == userId && u.FavouriteeId == recipientId);
+            
         }
     }
 }

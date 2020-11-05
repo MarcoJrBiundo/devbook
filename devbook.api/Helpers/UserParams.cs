@@ -17,6 +17,9 @@ namespace devbook.api.Helpers
         public string Skill { get; set; }
         public string OrderBy { get; set; }
 
+        public bool Favouritees { get; set; } = false;
+        public bool Favouriters { get; set; } = false;
+
 
         
 

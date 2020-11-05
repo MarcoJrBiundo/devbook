@@ -17,6 +17,8 @@ namespace devbook.api.Data
         Task<Skills> addSkill(Skills skill);
         Task<Photo> GetPhoto(int id);
         Task<Photo> GetMainPhotoForUser(int userId);
+        Task<Favourite> GetFavourite(int userId, int recipientId);
+
 
 
         

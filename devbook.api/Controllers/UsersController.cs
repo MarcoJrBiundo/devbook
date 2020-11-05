@@ -34,24 +34,12 @@ namespace devbook.api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
         {
-
-
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var userFromRepo = await _repo.GetUser(currentUserId);
-
             userParams.UserId = currentUserId;
-
-
-
-
-
             var users = await _repo.GetUsers(userParams);
-
-             var userToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
-
-                  Response.AddPagination(users.CurrentPage, users.PageSize,
-                users.TotalCount, users.TotalPages);
-
+            var userToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
+            Response.AddPagination(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
             return Ok(userToReturn);
         }
 
@@ -111,6 +99,39 @@ namespace devbook.api.Controllers
          
 
             
+        }
+
+
+
+        [HttpPost("{id}/Favourite/{recipientId}")]
+        public async Task<IActionResult> FavouriteUser(int id, int recipientId)
+        {
+            
+            if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var favourite = await _repo.GetFavourite(id, recipientId);
+
+            if (favourite != null)
+                return BadRequest("You already Favourited this user");
+
+            if (await _repo.GetUser(recipientId) == null)
+                return NotFound();
+
+            favourite = new Favourite
+            {
+                FavouriterId = id,
+                FavouriteeId = recipientId
+            };
+
+            _repo.Add<Favourite>(favourite);
+
+            if(await _repo.SaveAll())
+                return Ok();
+
+            return BadRequest("Failed to Favourite User");
+
+
         }
 
 
