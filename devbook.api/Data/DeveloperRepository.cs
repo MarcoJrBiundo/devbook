@@ -189,7 +189,6 @@ namespace devbook.api.Data
                     && m.SenderId == recipientId
                     || m.RecipientId == recipientId && m.SenderId == userId
                     && m.SenderDeleted == false)
-            .OrderByDescending(m => m.MessageSent)
             .ToListAsync();
 
                 return messages;
