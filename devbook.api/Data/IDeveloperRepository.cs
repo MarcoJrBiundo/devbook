@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using devbook.api.Helpers;
 using devbook.api.models;
 
+
 namespace devbook.api.Data
 {
     public interface IDeveloperRepository
@@ -18,6 +19,11 @@ namespace devbook.api.Data
         Task<Photo> GetPhoto(int id);
         Task<Photo> GetMainPhotoForUser(int userId);
         Task<Favourite> GetFavourite(int userId, int recipientId);
+
+   
+        Task<Messages> GetMessage(int id);
+        Task<PagedList<Messages>> GetMessagesForUser(MessageParams messageParams);   
+        Task<IEnumerable<Messages>> GetMessageThread(int userId, int recipientId);   
 
 
 
