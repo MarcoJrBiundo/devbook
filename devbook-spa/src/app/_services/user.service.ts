@@ -123,5 +123,9 @@ markAsRead(userId: number, messageId: number){
 }
 
 
+updateRating(id: number, user: User){
+  return this.http.put(this.baseUrl + 'users/rating/' + id, user);
+}
+
 }
 

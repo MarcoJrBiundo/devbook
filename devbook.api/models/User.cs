@@ -16,6 +16,7 @@ namespace devbook.api.models
          public string GithubLink { get; set; }
         public string Status { get; set; }
         public double Rating { get; set; }
+        public int RatingCount { get; set; }
         public string Gender { get; set; }
         public string Interest { get; set; }
         public DateTime LastActive { get; set; }   

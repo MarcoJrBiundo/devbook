@@ -18,6 +18,7 @@ export interface User {
     country: string;
     status?: string;
     rating?: number;
+    ratingCount?: number;
     photos?: Photo[];
     interest: string;
     skills?: Skill[];

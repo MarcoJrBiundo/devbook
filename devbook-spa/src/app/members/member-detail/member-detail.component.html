@@ -24,12 +24,28 @@
             <strong>Member Since:</strong>
             <p>{{user.created | date: 'mediumDate' }}</p>
           </div>
+ 
+
         </div>
         <div class="card-footer">
-          <div class="btn-group d-flex">
+          <strong>Rate {{user.firstName}}:</strong>
+          <div>
+            <select class="custom-select "  style="width: 50%;" id="rating" [(ngModel)]="newRating" name="rating">
+              <option selected value=1>1</option>
+              <option value=2>2</option>
+              <option value=3>3</option>
+              <option value=4>4</option>
+              <option value=5>5</option>
+            </select> 
+            <button (click)="updateRating()" style="width: 50%;" class="btn btn-dark">Submit Rating</button>
+          </div>
+
+          <div class="btn-group d-flex mt-2">
             <button class="btn btn-primary w-100" (click)="sendFavourite(user.id)" >Favourite</button>
             <button class="btn btn-success w-100" (click)="selectTab(2)">Message</button>
           </div>
+
+          
         </div>
       </div>
     </div>

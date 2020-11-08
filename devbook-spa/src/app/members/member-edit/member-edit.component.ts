@@ -17,6 +17,7 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class MemberEditComponent implements OnInit {
   user: User;
+
   newSkill: string;
   newSkillObject: any = {};
   @ViewChild('editForm', {static: true}) editForm: NgForm;
@@ -58,6 +59,11 @@ export class MemberEditComponent implements OnInit {
         this.alertify.error(error);
       });
   }
+
+
+
+
+
 
   deleteSkill(skill){
     this.userService.deleteSkill(skill.id).subscribe(next => {

@@ -14,6 +14,7 @@ namespace devbook.api.dtos
         public string GithubLink { get; set; }
         public int Age { get; set; }
         public double Rating { get; set; }
+        public int RatingCount { get; set; }
         public DateTime LastActive { get; set; }   
         public DateTime Created { get; set; }   
         public DateTime DateOfBirth { get; set; } 

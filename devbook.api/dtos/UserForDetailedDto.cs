@@ -19,6 +19,7 @@ namespace devbook.api.dtos
         public double Rating { get; set; }
         public string Gender { get; set; }
         public string Interest { get; set; }
+        public int RatingCount { get; set; }
         public DateTime LastActive { get; set; }
         public DateTime Created { get; set; }
         public DateTime DateOfBirth { get; set; }

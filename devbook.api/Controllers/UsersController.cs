@@ -70,6 +70,21 @@ namespace devbook.api.Controllers
         }
 
 
+        [HttpPut("rating/{id}")]
+        public async Task<IActionResult> UpdateRating(int id, UserForRatingUpdateDTO userForRatingUpdateDto)
+        {
+
+            var userFromRepo = await _repo.GetUser(id);
+
+            _mapper.Map(userForRatingUpdateDto, userFromRepo);
+
+            if(await _repo.SaveAll())
+                return NoContent();
+
+            throw new Exception($"Updating user rating {id} failed on save");
+        }
+
+
         [HttpDelete("skill/{id}")]
          public async Task<IActionResult> DeleteSkill(int id)
          {
@@ -93,12 +108,7 @@ namespace devbook.api.Controllers
                  };
              var createdUser = await _repo.addSkill(skillToCreate);
 
-            return StatusCode(204);
-        
-
-         
-
-            
+            return StatusCode(204);    
         }
 
 

@@ -15,6 +15,7 @@ import { UserService } from 'src/app/_services/user.service';
 export class MemberDetailComponent implements OnInit {
   @ViewChild('memberTabs', {static: true}) memberTabs: TabsetComponent;
   user: User;
+  newRating: number;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
 
@@ -43,6 +44,10 @@ export class MemberDetailComponent implements OnInit {
   ];
     this.galleryImages = this.getImages();
 
+
+
+    
+
   }
 
   getImages(){
@@ -70,6 +75,23 @@ export class MemberDetailComponent implements OnInit {
       this.alertify.error("You favourited this user already");
     });
   }
+
+
+
+  updateRating(){
+
+    this.user.rating = +this.user.rating + +this.newRating;
+    this.user.ratingCount = this.user.ratingCount + 1;
+
+    console.log(this.user.rating);
+    console.log(this.user.ratingCount);
+ 
+    this.userService.updateRating(this.user.id, this.user).subscribe(next => {
+       this.alertify.success('Rating Updated Successfully');
+     }, error => {
+       this.alertify.error(error);
+     });
+ }
 
 
 
