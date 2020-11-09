@@ -12,11 +12,18 @@ import { UserService } from 'src/app/_services/user.service';
 export class MemberCardComponent implements OnInit {
   @Input() user: User;
   skills: string;
+  hasRating: boolean;
 
   constructor(private authService: AuthService, private userService: UserService, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.loadSkills();
+
+    if(this.user.ratingCount > 0){
+      this.hasRating = true;
+    }else{
+      this.hasRating = false;
+    }
     
   }
 

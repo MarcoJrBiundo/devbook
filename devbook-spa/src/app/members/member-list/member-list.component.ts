@@ -12,7 +12,6 @@ import { UserService } from '../../_services/user.service';
 })
 export class MemberListComponent implements OnInit {
   users: User[];
-  user: User = JSON.parse(localStorage.getItem('user'));
   userParams: any = {};
   pagination: Pagination;
 

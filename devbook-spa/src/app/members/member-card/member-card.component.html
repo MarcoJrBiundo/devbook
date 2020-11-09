@@ -12,7 +12,8 @@
     <h6 class="card-title text-center mb-1"><i class="fa fa-user"></i>
       {{user.firstName}} {{user.lastName}}
     </h6>
-    <p class="card-text text-muted text-center"> Rating: {{user.rating / user.ratingCount || "No ratings yet"}}</p>
+    <p *ngIf="hasRating" class="card-text text-muted text-center"> Rating: {{(user.rating / user.ratingCount).toFixed(1)}}</p>
+    <p *ngIf="!hasRating" class="card-text text-muted text-center"> Rating: No ratings yet</p>
     <p class="card-text text-muted text-center"> Skills: {{skills}}</p>
 
     <p class="card-text text-muted text-center"> <a href="{{user.githubLink}}">Go To {{user.firstName}}'s Github</a></p>
