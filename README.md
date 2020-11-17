@@ -30,10 +30,15 @@ Features Include
 
 Screen Shots
 ![User sign up](https://github.com/MarcoJrBiundo/devbook/blob/master/applicationImages/Screen%20Shot%202020-11-17%20at%201.48.10%20PM.png)
+
 ![Logged in user profile](https://github.com/MarcoJrBiundo/devbook/blob/master/applicationImages/Screen%20Shot%202020-11-17%20at%201.48.52%20PM.png)
+
 ![Edit skills](https://github.com/MarcoJrBiundo/devbook/blob/master/applicationImages/Screen%20Shot%202020-11-17%20at%201.48.59%20PM.png)
+
 ![Photo upload](https://github.com/MarcoJrBiundo/devbook/blob/master/applicationImages/Screen%20Shot%202020-11-17%20at%201.49.10%20PM.png)
+
 ![Search and sort](https://github.com/MarcoJrBiundo/devbook/blob/master/applicationImages/Screen%20Shot%202020-11-17%20at%201.49.36%20PM.png)
+
 ![User to user messaging](https://github.com/MarcoJrBiundo/devbook/blob/master/applicationImages/Screen%20Shot%202020-11-17%20at%201.49.59%20PM.png)
 
 
