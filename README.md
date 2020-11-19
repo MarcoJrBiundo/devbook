@@ -1,6 +1,6 @@
 # Devbook
 
-The following project was done in my 6th semester of studies as a capstone project. The C# backend is located in the Devbook.api file and the Angular frontend is located in Devbook-spa
+The C# backend is located in the Devbook.api file and the Angular frontend is located in Devbook-spa
 
 Getting Started
 - nagivate to Devbook-spa and excute "npm install" to install dependancies
