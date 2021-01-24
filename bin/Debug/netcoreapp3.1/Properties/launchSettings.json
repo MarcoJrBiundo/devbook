@@ -7,11 +7,6 @@
       "applicationUrl": "http://localhost:20818",
       "sslPort": 44365
     }
-    
-    
-      "ConnectionStrings":{
-    "DefaultConnection": "Data Source=datingapp.db"
-  },
   },
   "profiles": {
     "IIS Express": {
@@ -22,6 +17,10 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+        
+      "ConnectionStrings":{
+    "DefaultConnection": "Data Source=datingapp.db"
+  },
     "devbook.api": {
       "commandName": "Project",
       "launchBrowser": true,
